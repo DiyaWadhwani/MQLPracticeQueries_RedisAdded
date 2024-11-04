@@ -11,21 +11,24 @@ async function main() {
       .aggregate([
         {
           $group: {
-            _id: "$user.screen_name", // Group by unique user screen name
+            _id: "$user.id", // Group by unique user screen name
+            username: { $first: "$user.name" }, // Get the first user name for each user
+            screen_name: { $first: "$user.screen_name" }, // Get the first screen name for each user
             followers_count: { $max: "$user.followers_count" }, // Get the maximum followers count for each user
           },
         },
         {
-          $sort: { followers_count: -1 }, // Sort by followers count in descending order
+          $sort: { followers_count: -1 },
         },
         {
-          $limit: 10, // Limit to top 10 users
+          $limit: 10,
         },
         {
           $project: {
-            screen_name: "$_id",
+            _id: "$_id",
+            screen_name: 1,
+            username: 1,
             followers_count: 1,
-            _id: 0, 
           },
         },
       ])
