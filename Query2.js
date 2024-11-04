@@ -11,9 +11,7 @@ async function main() {
       .aggregate([
         {
           $group: {
-            _id: "$user.id", // Group by unique user screen name
-            username: { $first: "$user.name" }, // Get the first user name for each user
-            screen_name: { $first: "$user.screen_name" }, // Get the first screen name for each user
+            _id: "$user.screen_name", // Group by unique user screen name
             followers_count: { $max: "$user.followers_count" }, // Get the maximum followers count for each user
           },
         },
@@ -22,14 +20,6 @@ async function main() {
         },
         {
           $limit: 10,
-        },
-        {
-          $project: {
-            _id: "$_id",
-            screen_name: 1,
-            username: 1,
-            followers_count: 1,
-          },
         },
       ])
       .toArray();
