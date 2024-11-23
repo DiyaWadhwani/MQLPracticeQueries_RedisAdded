@@ -1,4 +1,4 @@
-# MQLPracticeQueries
+# MQLPracticeQueries_RedisAdded
 
 This project uses Node.js to query a MongoDB database containing tweets from the 2020 IEEE VIS Conference. The project includes five different queries, each provided in separate JavaScript files. These queries answer specific questions about the tweet data.
 
