@@ -24,7 +24,7 @@ Make sure you have the following installed:
 
    ```sh
    git clone https://github.com/DiyaWadhwani/MQLPracticeQueries.git
-   cd MQLPracticeQueries
+   cd MQLPracticeQueries_RedisAdded/MQLQueries
    ```
 
 2. Install the necessary Node.js dependencies:
