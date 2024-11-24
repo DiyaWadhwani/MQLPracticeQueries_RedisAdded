@@ -30,7 +30,7 @@ Make sure you have the following installed:
 2. Install the necessary Node.js dependencies:
 
    ```sh
-   npm install
+   npm install mongodb
    ```
 
 ### Database Setup
@@ -51,7 +51,7 @@ Each query is a separate script that you can run with Node.js.
 To run Query1.js, execute:
 
 ```sh
-node Query1.js
+node MQLQueries/Query1.js
 ```
 
 This will output the number of tweets that are neither retweets nor replies.
@@ -61,7 +61,7 @@ This will output the number of tweets that are neither retweets nor replies.
 To run Query2.js, execute:
 
 ```sh
-node Query2.js
+node MQLQueries/Query2.js
 ```
 
 This will return the top 10 users by their number of followers.
@@ -71,7 +71,7 @@ This will return the top 10 users by their number of followers.
 To run Query3.js, execute:
 
 ```sh
-node Query3.js
+node MQLQueries/Query3.js
 ```
 
 This will display the user with the most tweets.
@@ -81,7 +81,7 @@ This will display the user with the most tweets.
 To run Query4.js, execute:
 
 ```sh
-node Query4.js
+node MQLQueries/Query4.js
 ```
 
 This will return the top 10 users with the most average retweets, who have tweeted more than three times.
@@ -91,7 +91,7 @@ This will return the top 10 users with the most average retweets, who have tweet
 To run Query5.js, execute:
 
 ```sh
-node Query5.js
+node MQLQueries/Query5.js
 ```
 
 This script will separate the user information into a new collection named `user` and create a `tweets_only` collection that references users by ID.
