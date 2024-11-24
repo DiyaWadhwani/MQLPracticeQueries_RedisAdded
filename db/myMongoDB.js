@@ -26,15 +26,14 @@ export async function getTotalFavorites() {
     const database = client.db("ieeevisTweets");
     const tweetsCollection = database.collection("tweet");
 
-    const result = await tweetsCollection
-      .aggregate([
-        { $group: { _id: null, totalFavorites: { $sum: "$favorite_count" } } },
-      ])
+    const tweets = await tweetsCollection
+      .find({}, { projection: { favorite_count: 1 } })
       .toArray();
 
-    const totalFavorites = result[0]?.totalFavorites || 0;
-    console.log(`Total number of favorites: ${totalFavorites}`);
-    return totalFavorites;
+    console.log(
+      `Retrieved ${tweets.length} tweets with favorite_count from db.`
+    );
+    return tweets;
   } catch (error) {
     console.error("Error in getTotalFavorites:", error);
     throw error;
