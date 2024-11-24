@@ -89,12 +89,17 @@ export async function getTweetsByUser() {
     const database = client.db("ieeevisTweets");
     const tweetsCollection = database.collection("tweet");
 
-    const tweets = await tweetsCollection.find().toArray();
+    const tweets = await tweetsCollection
+      .find({ "user.screen_name": { $exists: true }, text: { $exists: true } })
+      .toArray();
+
     const tweetsByUser = {};
 
     for (const tweet of tweets) {
       const screenName = tweet.user.screen_name;
       const tweetId = tweet._id;
+
+      if (!screenName || !tweetId) continue;
 
       if (!tweetsByUser[screenName]) {
         tweetsByUser[screenName] = [];
@@ -108,8 +113,6 @@ export async function getTweetsByUser() {
         retweet_count: tweet.retweet_count,
       });
     }
-
-    console.log("Tweets organized by user");
     return tweetsByUser;
   } catch (error) {
     console.error("Error in getTweetsByUser:", error);
