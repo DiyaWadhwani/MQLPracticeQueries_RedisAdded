@@ -14,9 +14,10 @@ client.on("connect", () => {
 });
 
 async function main() {
-  const tweets = await getTotalTweets();
   await client.set("tweetCount", "0");
   console.log("tweetCount set to 0");
+
+  const tweets = await getTotalTweets();
   for (let tweet of tweets) {
     await client.incr("tweetCount");
   }
