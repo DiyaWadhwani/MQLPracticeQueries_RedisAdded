@@ -49,7 +49,7 @@ export async function getDistinctUsers() {
     const tweetsCollection = database.collection("tweet");
 
     const distinctUsers = await tweetsCollection.distinct("user.screen_name");
-    console.log(`Total distinct users: ${distinctUsers.length}`);
+    console.log(`Total distinct users from db: ${distinctUsers.length}`);
     return distinctUsers;
   } catch (error) {
     console.error("Error in getDistinctUsers:", error);
@@ -73,7 +73,7 @@ export async function getTopUsersByTweetCount(limit = 10) {
       ])
       .toArray();
 
-    console.log("Top users by tweet count:", leaderboard);
+    console.log("Top users by tweet count from db:", leaderboard);
     return leaderboard;
   } catch (error) {
     console.error("Error in getTopUsersByTweetCount:", error);
