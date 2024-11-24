@@ -97,7 +97,7 @@ export async function getTweetsByUser() {
 
     for (const tweet of tweets) {
       const screenName = tweet.user.screen_name;
-      const tweetId = tweet._id;
+      const tweetId = tweet.id;
 
       if (!screenName || !tweetId) continue;
 
