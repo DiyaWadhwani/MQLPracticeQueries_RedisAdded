@@ -9,9 +9,9 @@ export async function getTotalTweets() {
     const database = client.db("ieeevisTweets");
     const tweetsCollection = database.collection("tweet");
 
-    const tweetCount = await tweetsCollection.countDocuments();
-    console.log(`Total number of tweets: ${tweetCount}`);
-    return tweetCount;
+    const tweets = await tweetsCollection.find({}).toArray();
+    console.log(`Total number of tweets retrieved from db: ${tweets.length}`);
+    return tweets;
   } catch (error) {
     console.error("Error in getTotalTweets:", error);
     throw error;
@@ -119,11 +119,3 @@ export async function getTweetsByUser() {
     await client.close();
   }
 }
-
-// Example usage
-// Uncomment to test a specific function
-getTotalTweets();
-getTotalFavorites();
-getDistinctUsers();
-getTopUsersByTweetCount();
-getTweetsByUser();
